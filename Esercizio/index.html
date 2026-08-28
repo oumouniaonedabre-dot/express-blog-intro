@@ -1,0 +1,362 @@
+<button id="toggleBtn">Mostra/Nascondi</button>
+<p id="testo">Questo è il testo da mostrare o nascondere.</p>
+
+<script>
+  const btn = document.getElementById('toggleBtn');
+  const testo = document.getElementById('testo');
+
+  btn.addEventListener('click', function() {
+    if (testo.style.display === 'none') {
+      testo.style.display = 'block';
+    } else {
+      testo.style.display = 'none';
+    }
+  });
+</script>
+
+
+<div id="quadrato" style="width: 100px; height: 100px; background-color: gray; margin-bottom: 10px;"></div>
+<button class="colorBtn" data-color="red">Rosso</button>
+<button class="colorBtn" data-color="green">Verde</button>
+<button class="colorBtn" data-color="blue">Blu</button>
+
+<script>
+  const quadrato = document.getElementById('quadrato');
+  const pulsanti = document.querySelectorAll('.colorBtn');
+
+  pulsanti.forEach(pulsante => {
+    pulsante.addEventListener('click', function() {
+      const colore = this.getAttribute('data-color');
+      quadrato.style.backgroundColor = colore;
+    });
+  });
+</script>
+
+
+<input type="text" id="inputSpecchio" placeholder="Scrivi qualcosa...">
+<p id="outputTesto">In attesa di digitazione...</p>
+
+<script>
+  const input = document.getElementById('inputSpecchio');
+  const output = document.getElementById('outputTesto');
+
+  input.addEventListener('input', function() {
+    output.innerText = this.value;
+  });
+</script>
+
+
+
+<button id="addBtn">Aggiungi Elemento</button>
+<ul id="listaElementi"></ul>
+
+<script>
+  const addBtn = document.getElementById('addBtn');
+  const lista = document.getElementById('listaElementi');
+  let contatore = 1;
+
+  addBtn.addEventListener('click', function() {
+    const nuovoLi = document.createElement('li');
+    nuovoLi.innerText = "Elemento " + contatore;
+    lista.appendChild(nuovoLi);
+    contatore++;
+  });
+</script>
+
+
+<input type="text" id="todoInput" placeholder="Inserisci nota...">
+<button id="todoBtn">Aggiungi</button>
+<ul id="todoList"></ul>
+
+<script>
+  const input = document.getElementById('todoInput');
+  const btn = document.getElementById('todoBtn');
+  const ul = document.getElementById('todoList');
+
+  btn.addEventListener('click', function() {
+    const testo = input.value.trim(); // trim rimuove gli spazi vuoti prima e dopo
+    
+    if (testo !== "") {
+      const li = document.createElement('li');
+      li.innerText = testo;
+      ul.appendChild(li);
+      input.value = ""; // Svuota l'input
+    }
+  });
+</script>
+
+
+
+<form id="iscrizioneForm">
+  <input type="text" id="nome" placeholder="Nome" required>
+  <input type="email" id="email" placeholder="Email" required>
+  <button type="submit">Invia</button>
+</form>
+<p>Totale iscritti: <span id="counter">0</span></p>
+
+<script>
+  const listaIscritti = [];
+  const form = document.getElementById('iscrizioneForm');
+  const counterSpan = document.getElementById('counter');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault(); // Impedisce il caricamento della pagina al submit
+    
+    const utente = {
+      nome: document.getElementById('nome').value,
+      email: document.getElementById('email').value
+    };
+    
+    listaIscritti.push(utente);
+    counterSpan.innerText = listaIscritti.length;
+    form.reset(); // Resetta i campi di testo
+  });
+</script>
+
+
+<div id="catalogoContainer"></div>
+
+<script>
+  const catalogoLibri = [
+    { id: 101, titolo: "Il Signore degli Anelli", autore: "J.R.R. Tolkien", quantita: 3 },
+    { id: 102, titolo: "1984", autore: "George Orwell", quantita: 0 },
+    { id: 103, titolo: "Il nome della rosa", autore: "Umberto Eco", quantita: 5 }
+  ];
+
+  const container = document.getElementById('catalogoContainer');
+
+  function renderCatalogo(libri) {
+    container.innerHTML = ""; // Svuota prima di renderizzare
+    
+    libri.forEach(libro => {
+      const libroDiv = document.createElement('div');
+      libroDiv.style.border = "1px solid #ccc";
+      libroDiv.style.margin = "5px";
+      libroDiv.style.padding = "10px";
+      
+      libroDiv.innerHTML = `
+        <h3>${libro.titolo}</h3>
+        <p>Autore: ${libro.autore}</p>
+        <p>Disponibilità: ${libro.quantita > 0 ? libro.quantita + ' copie' : '<strong>Esaurito</strong>'}</p>
+      `;
+      container.appendChild(libroDiv);
+    });
+  }
+
+  // Esecuzione immediata all'avvio
+  renderCatalogo(catalogoLibri);
+</script>
+
+
+<input type="text" id="searchBar" placeholder="Cerca titolo libro...">
+<div id="catalogoContainer"></div>
+
+<script>
+  // Riprendiamo lo stesso catalogo e la stessa logica di rendering precedente
+  const catalogoLibri = [
+    { id: 101, titolo: "Il Signore degli Anelli", autore: "J.R.R. Tolkien", quantita: 3 },
+    { id: 102, titolo: "1984", autore: "George Orwell", quantita: 0 },
+    { id: 103, titolo: "Il nome della rosa", autore: "Umberto Eco", quantita: 5 }
+  ];
+  
+  const container = document.getElementById('catalogoContainer');
+  const searchBar = document.getElementById('searchBar');
+
+  function renderCatalogo(libri) {
+    container.innerHTML = "";
+    libri.forEach(libro => {
+      const libroDiv = document.createElement('div');
+      libroDiv.innerHTML = `<h3>${libro.titolo}</h3><p>${libro.autore}</p>`;
+      container.appendChild(libroDiv);
+    });
+  }
+
+  // Gestione dell'evento di digitazione
+  searchBar.addEventListener('input', function() {
+    const termineRicerca = this.value.toLowerCase();
+    
+    const libriFiltrati = catalogoLibri.filter(libro => {
+      return libro.titolo.toLowerCase().includes(termineRicerca);
+    });
+    
+    renderCatalogo(libriFiltrati);
+  });
+
+  renderCatalogo(catalogoLibri); // Render iniziale
+</script>
+
+
+
+<div style="display: flex;">
+  <div style="width: 40%; border-right: 1px solid #ccc; padding: 10px;">
+    <h3>Prodotti</h3>
+    <ul id="listaProdotti" style="cursor: pointer; list-style: none; padding: 0;"></ul>
+  </div>
+  <div style="width: 60%; padding: 10px;" id="pannelloDettaglio">
+    <p>Seleziona un prodotto per vederne i dettagli.</p>
+  </div>
+</div>
+
+<script>
+  const listaProdottiDettaglio = [
+    { id: "p1", nome: "Monitor 27 pollici", prezzo: 249, descrizione: "Monitor IPS 4K con frequenza a 144Hz." },
+    { id: "p2", nome: "Sedia Ergonomica", prezzo: 189, descrizione: "Sedia con supporto lombare regolabile." },
+    { id: "p3", nome: "Microfono USB", prezzo: 79, descrizione: "Microfono a condensatore con pattern cardioide." }
+  ];
+
+  const ulLista = document.getElementById('listaProdotti');
+  const pannello = document.getElementById('pannelloDettaglio');
+
+  // Generazione dinamica della lista (Master)
+  listaProdottiDettaglio.forEach(prodotto => {
+    const li = document.createElement('li');
+    li.innerText = prodotto.nome;
+    li.style.padding = "8px";
+    li.style.borderBottom = "1px solid #eee";
+    
+    // Agganciamo il click direttamente su ciascun elemento della lista
+    li.addEventListener('click', function() {
+      // Aggiorniamo il pannello dei dettagli (Detail)
+      pannello.innerHTML = `
+        <h2>${prodotto.nome}</h2>
+        <p><strong>Prezzo:</strong> €${prodotto.prezzo}</p>
+        <p><strong>Descrizione:</strong> ${prodotto.descrizione}</p>
+      `;
+    });
+    
+    ulLista.appendChild(li);
+  });
+</script>
+
+
+<input type="text" id="itemInput">
+<button id="addItemBtn">Aggiungi</button>
+<ul id="dynamicList"></ul>
+
+<script>
+  const itemInput = document.getElementById('itemInput');
+  const addItemBtn = document.getElementById('addItemBtn');
+  const dynamicList = document.getElementById('dynamicList');
+
+  addItemBtn.addEventListener('click', function() {
+    const testo = itemInput.value.trim();
+    if (testo === "") return;
+
+    const li = document.createElement('li');
+    li.innerText = testo + " ";
+
+    // Creazione del bottone di cancellazione
+    const deleteBtn = document.createElement('button');
+    deleteBtn.innerText = "X";
+    deleteBtn.style.marginLeft = "10px";
+
+    // L'evento sfrutta la closure: deleteBtn ricorda su quale elemento 'li' è nato
+    deleteBtn.addEventListener('click', function() {
+      li.remove(); // Rimuove l'elemento 'li' specifico dal DOM
+    });
+
+    li.appendChild(deleteBtn);
+    dynamicList.appendChild(li);
+    itemInput.value = "";
+  });
+</script>
+
+
+<form id="registerForm">
+  <div>
+    <label>Password:</label>
+    <input type="password" id="pass">
+  </div>
+  <div>
+    <label>Conferma Password:</label>
+    <input type="password" id="confirmPass">
+  </div>
+  <button type="submit">Registrati</button>
+</form>
+<div id="msgValidazione" style="margin-top: 10px; font-weight: bold;"></div>
+
+<script>
+  const form = document.getElementById('registerForm');
+  const passInput = document.getElementById('pass');
+  const confirmInput = document.getElementById('confirmPass');
+  const msg = document.getElementById('msgValidazione');
+
+  form.addEventListener('submit', function(e) {
+    const p1 = passInput.value;
+    const p2 = confirmInput.value;
+
+    if (p1.length < 8) {
+      e.preventDefault(); // Blocca l'invio del form
+      msg.innerText = "Errore: la password deve essere lunga almeno 8 caratteri.";
+      msg.style.color = "red";
+    } else if (p1 !== p2) {
+      e.preventDefault(); // Blocca l'invio del form
+      msg.innerText = "Errore: le due password non corrispondono.";
+      msg.style.color = "red";
+    } else {
+      e.preventDefault(); // Bloccato solo a scopo dimostrativo per vedere il messaggio verde
+      msg.innerText = "Successo: Validazione superata!";
+      msg.style.color = "green";
+    }
+  });
+</script>
+
+
+<div id="quizContainer">
+  <h2 id="domandaTesto"></h2>
+  <div id="opzioniContainer"></div>
+  <p>Punteggio: <span id="punteggioAttuale">0</span></p>
+</div>
+
+<script>
+  const domandeQuiz = [
+    { id: 1, domanda: "Quale tag HTML viene usato per inserire un file JS esterno?", opzioni: ["<link>", "<script>", "<js>", "<javascript>"], indiceCorretto: 1 },
+    { id: 2, domanda: "Qual è il valore predefinito della proprietà position in CSS?", opzioni: ["absolute", "relative", "static", "fixed"], indiceCorretto: 2 },
+    { id: 3, domanda: "Quale di questi metodi NON è un metodo nativo degli array in JS?", opzioni: ["push()", "pop()", "join()", "listen()"], indiceCorretto: 3 }
+  ];
+
+  let indiceDomandaCorrente = 0;
+  let punteggio = 0;
+
+  const domandaTesto = document.getElementById('domandaTesto');
+  const opzioniContainer = document.getElementById('opzioniContainer');
+  const punteggioAttuale = document.getElementById('punteggioAttuale');
+
+  function mostraDomanda() {
+    // Se abbiamo superato l'ultima domanda, mostriamo i risultati finali
+    if (indiceDomandaCorrente >= domandeQuiz.length) {
+      document.getElementById('quizContainer').innerHTML = `<h2>Quiz Terminato! Il tuo punteggio finale è: ${punteggio}/${domandeQuiz.length}</h2>`;
+      return;
+    }
+
+    const datiDomanda = domandeQuiz[indiceDomandaCorrente];
+    domandaTesto.innerText = datiDomanda.domanda;
+    opzioniContainer.innerHTML = ""; // Pulizia bottoni precedenti
+
+    // Generazione bottoni opzione
+    datiDomanda.opzioni.forEach((opzione, index) => {
+      const btn = document.createElement('button');
+      btn.innerText = opzione;
+      btn.style.margin = "5px";
+      btn.style.display = "block";
+      
+      btn.addEventListener('click', function() {
+        if (index === datiDomanda.indiceCorretto) {
+          alert("Esatto!");
+          punteggio++;
+          punteggioAttuale.innerText = punteggio;
+        } else {
+          alert("Sbagliato! La risposta corretta era: " + datiDomanda.opzioni[datiDomanda.indiceCorretto]);
+        }
+        
+        indiceDomandaCorrente++; // Avanza di indice
+        mostraDomanda(); // Auto-invocazione per la nuova schermata
+      });
+      
+      opzioniContainer.appendChild(btn);
+    });
+  }
+
+  // Lancio della prima domanda all'avvio della pagina
+  mostraDomanda();
+</script>
