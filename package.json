@@ -1,23 +1,13 @@
 {
-  "name": "express-blog-intro",
-  "version": "1.0.0",
-  "description": "Ciao Ragazzi, \r esercizio di oggi: express-blog-intro\r nome repo express-blog-intro",
-  "main": "index.js",
+  "name": "express-bg-intro",
+  "version": "0.0.1",
+  "description": "introduzione di express",
+  "type": "module",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "dev": "node --watch server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/oumouniaonedabre-dot/express-blog-intro.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/oumouniaonedabre-dot/express-blog-intro/issues"
-  },
-  "homepage": "https://github.com/oumouniaonedabre-dot/express-blog-intro#readme",
   "dependencies": {
     "express": "^5.2.1"
   }
