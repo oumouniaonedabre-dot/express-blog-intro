@@ -7,13 +7,13 @@ const port = 3000;
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-  res.redirect('/client');
+  res.send('server del mio blog');
 });
 
-app.get('/menu', (req, res) => {
+app.get('/bacheca', (req, res) => {
   res.json(menu);
 });
 
 app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+  console.log(`example listening on port ${port}`);
 });

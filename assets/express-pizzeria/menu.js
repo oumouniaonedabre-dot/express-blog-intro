@@ -1,27 +1,41 @@
 export const menu = [
   {
-    name: "Margherita",
-    image: "imgs/pizze/margherita.webp",
-    ingredients: ["pomodoro", "mozzarella"],
+    name: "formaggio",
+    content: "Pizza con formaggio",
+    image: "imgs/pizze/formaggio.jpeg",
+    ingredients: ["pomodoro", "mozzarella", "formaggio"],
+    tags: ["formaggio", "pizza", "italiana"],
   },
+  
   {
-    name: "Marinara",
+    name: "bufalina",
+    content: "Pizza con salsa di pomodoro",
     image: "imgs/pizze/marinara.jpeg",
     ingredients: ["pomodoro", "aglio", "origano"],
+    tags: ["bufalina", "pizza", "italiana"],
   },
+
   {
     name: "Diavola",
+    content: "Pizza con salame piccante",
     image: "imgs/pizze/diavola.jpeg",
     ingredients: ["pomodoro", "mozzarella", "salame piccante"],
+    tags: ["diavola", "pizza", "italiana"],
   },
+
   {
-    name: "Bufalina",
-    image: "imgs/pizze/bufalina.jpeg",
+    name: "margherita",
+    content: "Pizza con mozzarella di bufala",
+    image: "imgs/pizze/margherita.jpeg",
     ingredients: ["pomodoro", "mozzarella di bufala"],
+    tags: ["margherita", "pizza", "italiana"],
   },
+
   {
-    name: "4 formaggi",
-    image: "imgs/pizze/4_formaggi.jpeg",
-    ingredients: ["pomodoro", "mozzarella", "gorgonzola", "parmigiano", "ricotta"],
+    name: "marinara",
+    content: "Pizza con salsa di pomodoro",
+    image: "imgs/pizze/marinara.jpeg",
+    ingredients: ["pomodoro", "aglio", "origano"],
+    tags: ["marinara", "pizza", "italiana"],
   }
-];
+ 
